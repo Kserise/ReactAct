@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js
+
+"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel"> // jsx를 사용하기위해서는 ㄴ를 임포트하고 script type을 text/bable 로 변경
+    const root = document.getElementById("root");
+    function App(){
+        const [counter, setCounter] = React.useState(0); // useState(값, 변경값);
+        // const data = [1, 2, 3], const [a, b, c] = data; 이러면 a변수에 1이 담긴다.
+        const onClick = () => {
+           // setCounter(counter + 1); // state값이 변경되면 리렌더링이 일어난다.
+           setCounter(current => current + 1); // 현재 state를 바탕으로 다음 state값을 지정한다. ( 외부에서  counter변수에 접근해서 값을 변경할수도있으니까.)
+           
+        }
+        return (
+            <div>
+                <h3>Total clicks: {counter}</h3>
+                <button onClick={onClick}>Click me</button>
+            </div>
+        );
+    }
+    ReactDOM.render(<App/>, root);
+</script>
+</html>

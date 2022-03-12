@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel"> // jsx를 사용하기위해서는 ㄴ를 임포트하고 script type을 text/bable 로 변경
+    const root = document.getElementById("root");
+    function Btn({text, fontSize}){ // Btn({banana, big}) 이런식으로 property를 꺼내서 사용할수도있다. props는 오브젝트기 때문
+        return <button 
+        style={{
+            backgroundColor:"tomato",
+            color:"white",
+            padding:"10px 20px",
+            border: 0,
+            borderRadius:10,
+            fontSize, // fontSize:fontSize 와 같음 (이름이같기때문에 한번만 적어도 된다.)
+        }}>{text}</button>
+    }
+    Btn.propTypes = {
+        text: PropTypes.string.isRequired, // 반드시 필요한 속성은 isRequired
+        fontSize: PropTypes.number
+    }
+    function App(){
+        const [value, setValue] = React.useState("Save Changes");
+        const changeValue = () => setValue("Revert Changes");
+        return (
+            <div>
+                <Btn text="Save Changes" fontSize={18} />
+                <Btn text={"하 짜증나"} fontSize={12} />
+            </div>
+        );
+        // js명령어를 사용하기 위해서는 {} 내부에 적어야 한다.
+    }
+    ReactDOM.render(<App/>, root);
+</script>
+</html>
